@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -28,14 +29,16 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.ashley.login.ui.theme.LoginTheme
+import java.util.jar.Attributes.Name
 
-class MainActivity : ComponentActivity() {
+class RegisterActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -46,18 +49,21 @@ class MainActivity : ComponentActivity() {
                     color = MaterialTheme.colorScheme.background
                 ) {
                     //Greeting("Android")
-                    Login()
+                    Name()
                 }
             }
         }
     }
 }
-
 @Composable
-fun Login() {
+fun Name() {
+    var name by remember { mutableStateOf("") }
+
     var email by remember { mutableStateOf("") }
 
     var password by remember { mutableStateOf("") }
+
+    var confirm by remember { mutableStateOf("") }
 
     val context= LocalContext.current
     Column(horizontalAlignment = Alignment.CenterHorizontally,
@@ -65,26 +71,48 @@ fun Login() {
         modifier = Modifier
             .fillMaxSize()
             .padding(30.dp)
-            .background(Color.White)) {
+            .background(Color.Red)) {
         Text(text = "Sign Up",
-            color= Color.Blue,
+            color= Color.White,
             fontSize = 20.sp,
             fontFamily = FontFamily.Serif,
         )
+        Image(painter = painterResource(id =  R.drawable.img),
+            contentDescription ="makeup" )
         OutlinedTextField(
-            value =email ,
-            onValueChange = {email=it},
-            label = { Text(text = "Email Address")},
+            value =name ,
+            onValueChange = {name=it},
+            label = { Text(text = "Enter name")},
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(vertical = 10.dp),
 
-        )
+            )
 
+        OutlinedTextField(
+            value =email,
+            onValueChange ={email=it},
+            label = { Text(text = "Enter email")},
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(vertical = 9.dp),
+            keyboardActions = KeyboardActions(),
+            keyboardOptions = KeyboardOptions(imeAction = ImeAction.Next)
+        )
         OutlinedTextField(
             value =password,
             onValueChange ={password=it},
-            label = { Text(text = "Password")},
+            label = { Text(text = "Enter password")},
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(vertical = 9.dp),
+            keyboardActions = KeyboardActions(),
+            keyboardOptions = KeyboardOptions(imeAction = ImeAction.Next)
+        )
+        OutlinedTextField(
+            value =confirm,
+            onValueChange ={confirm=it},
+            label = { Text(text = "Confirm password")},
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(vertical = 9.dp),
@@ -93,22 +121,18 @@ fun Login() {
         )
         Spacer(modifier = Modifier.height(30.dp))
         Button(onClick = { /*TODO*/ },
-               modifier = Modifier.fillMaxWidth()) {
+            modifier = Modifier.fillMaxWidth()) {
 
             Text(text = "Login",
                 fontSize = 22.sp)
-        Spacer(modifier = Modifier.height(30.dp))
-        Button(onClick = {
-                         val intent=Intent(context,RegisterActivity::class.java)
-                         context.startActivity(intent)
-        } ,
-        modifier = Modifier.fillMaxWidth()) {
-            Text(text = "Click to register")
+        Button(onClick ={
+            val intent=Intent(context,MainActivity::class.java)
+            context.startActivity(intent)
+        }, modifier = Modifier.fillMaxWidth()) {
+            Text(text = "Click to login")
+
 
         }
-
-
-
         }
 
     }
@@ -117,7 +141,7 @@ fun Login() {
 
 @Preview
 @Composable
-private fun Loginprev() {
-    Login()
+private fun Nameprev() {
+    Name()
 
 }
