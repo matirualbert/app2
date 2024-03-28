@@ -1,6 +1,7 @@
 package com.ashley.login
 
 import android.content.Intent
+import android.graphics.drawable.Icon
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -15,7 +16,12 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Email
+import androidx.compose.material.icons.filled.Lock
+import androidx.compose.material.icons.filled.Person
 import androidx.compose.material3.Button
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Surface
@@ -82,6 +88,9 @@ fun Name() {
         OutlinedTextField(
             value =name ,
             onValueChange = {name=it},
+            leadingIcon = { Icon(
+                imageVector = Icons.Default.Person,
+                contentDescription = "name")},
             label = { Text(text = "Enter name")},
             modifier = Modifier
                 .fillMaxWidth()
@@ -92,6 +101,8 @@ fun Name() {
         OutlinedTextField(
             value =email,
             onValueChange ={email=it},
+            leadingIcon = { Icon(imageVector =Icons.Default.Email ,
+                contentDescription ="email" )},
             label = { Text(text = "Enter email")},
             modifier = Modifier
                 .fillMaxWidth()
@@ -102,6 +113,9 @@ fun Name() {
         OutlinedTextField(
             value =password,
             onValueChange ={password=it},
+            leadingIcon = { Icon(
+                imageVector =Icons.Default.Lock ,
+                contentDescription = "password")},
             label = { Text(text = "Enter password")},
             modifier = Modifier
                 .fillMaxWidth()
@@ -112,6 +126,10 @@ fun Name() {
         OutlinedTextField(
             value =confirm,
             onValueChange ={confirm=it},
+            leadingIcon = {Icon(
+                imageVector = Icons.Default.Lock,
+                contentDescription = "confirm"
+            )},
             label = { Text(text = "Confirm password")},
             modifier = Modifier
                 .fillMaxWidth()

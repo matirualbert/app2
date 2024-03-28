@@ -2,4 +2,8 @@
     <string name="app_name">Login</string>
     <string name="title_activity_register">RegisterActivity</string>
     <string name="title_activity_intent">IntentActivity</string>
+    <string name="title_activity_intent2">IntentActivity2</string>
+    <string name="title_activity_intent1">IntentActivity1</string>
+    <string name="title_activity_simple">SimpleActivity</string>
+    <string name="title_activity_register_main">RegisterMainActivity</string>
 </resources>

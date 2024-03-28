@@ -1,6 +1,8 @@
 package com.ashley.login
 
 import android.content.Intent
+import android.graphics.drawable.Icon
+import android.net.Uri
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -14,7 +16,11 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Email
+import androidx.compose.material.icons.filled.Lock
 import androidx.compose.material3.Button
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Surface
@@ -60,6 +66,7 @@ fun Login() {
     var password by remember { mutableStateOf("") }
 
     val context= LocalContext.current
+
     Column(horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Top,
         modifier = Modifier
@@ -74,6 +81,9 @@ fun Login() {
         OutlinedTextField(
             value =email ,
             onValueChange = {email=it},
+            leadingIcon = { Icon(
+                imageVector = Icons.Default.Email,
+                contentDescription ="email" )},
             label = { Text(text = "Email Address")},
             modifier = Modifier
                 .fillMaxWidth()
@@ -84,6 +94,9 @@ fun Login() {
         OutlinedTextField(
             value =password,
             onValueChange ={password=it},
+            leadingIcon = { Icon(
+                imageVector = Icons.Default.Lock,
+                contentDescription ="password" )},
             label = { Text(text = "Password")},
             modifier = Modifier
                 .fillMaxWidth()
